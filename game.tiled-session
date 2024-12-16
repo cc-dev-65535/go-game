@@ -1,0 +1,48 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "maps/game.tmx",
+    "expandedProjectPaths": [
+        ".",
+        "maps",
+        "tilesets"
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "game.tmx": {
+            "scale": 0.4077083333333333,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 480.7358201328564,
+                "y": 318.85539090444564
+            }
+        },
+        "maps/game.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 262.6666666666667,
+                "y": 178.66666666666669
+            }
+        },
+        "tilesets/Grass.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "C:/Users/omiya/Documents/Sprout Lands - Sprites - Basic pack/Tilesets",
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+        "maps/game.tmx",
+        "tilesets/Grass.tsx"
+    ],
+    "project": "game.tiled-project",
+    "recentFiles": [
+        "tilesets/Grass.tsx",
+        "maps/game.tmx",
+        "game.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}
