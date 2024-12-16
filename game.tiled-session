@@ -6,8 +6,8 @@
     "activeFile": "maps/game.tmx",
     "expandedProjectPaths": [
         ".",
-        "maps",
-        "tilesets"
+        "tilesets",
+        "maps"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
