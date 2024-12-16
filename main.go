@@ -2,10 +2,13 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"image"
+	_ "image/png"
 	"log"
 
-	"github.com/hajimehoshi/ebiten/examples/resources/images"
+	"game/test/images"
+
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -20,10 +23,11 @@ var (
 )
 
 func init() {
-	img, _, err := image.Decode(bytes.NewReader(images.Tiles_png))
+	img, _, err := image.Decode(bytes.NewReader(images.Grass_png))
 	if err != nil {
 		log.Fatal(err)
 	}
+	fmt.Println("hi")
 	tilesImage = ebiten.NewImageFromImage(img)
 }
 
@@ -32,7 +36,15 @@ func (g *Game) Update() error {
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
+	w := tilesImage.Bounds().Dx()
+	fmt.Println(w)
+	tileXCount := w / tileSize
+	fmt.Println(tileXCount)
 
+	op := &ebiten.DrawImageOptions{}
+	op.GeoM.Translate(0, 0)
+	fmt.Println("hijhg")
+	screen.DrawImage(tilesImage.SubImage(image.Rect(0, 0, 50, 50)).(*ebiten.Image), op)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
