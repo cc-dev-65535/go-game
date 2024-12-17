@@ -1,4 +1,5 @@
 # go-game
+Top-down tile-based game.
 
 ## Tools and Libraries
 

@@ -22,6 +22,7 @@ type Game struct {
 
 const tileSize = 16
 const mapPath = "maps/game.tmx"
+const tileLayers = 3
 
 var (
 	characterImage   *ebiten.Image
@@ -81,28 +82,19 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		panic(err)
 	}
 
-	err = renderer.RenderLayer(0)
-	if err != nil {
-		fmt.Printf("layer unsupported for rendering: %s", err.Error())
-		panic(err)
+	for i := 0; i < tileLayers; i++ {
+		err = renderer.RenderLayer(i)
+		if err != nil {
+			fmt.Printf("layer unsupported for rendering: %s", err.Error())
+			panic(err)
+		}
+
+		var layerImage image.Image = renderer.Result
+
+		screen.DrawImage(ebiten.NewImageFromImage(layerImage), options)
+
+		renderer.Clear()
 	}
-
-	var layerOneImage image.Image = renderer.Result
-
-	renderer.Clear()
-
-	err = renderer.RenderLayer(1)
-	if err != nil {
-		fmt.Printf("layer unsupported for rendering: %s", err.Error())
-		panic(err)
-	}
-
-	var layerTwoImage image.Image = renderer.Result
-
-	renderer.Clear()
-
-	screen.DrawImage(ebiten.NewImageFromImage(layerOneImage), options)
-	screen.DrawImage(ebiten.NewImageFromImage(layerTwoImage), options)
 
 	optionsCharacter := &ebiten.DrawImageOptions{}
 	optionsCharacter.GeoM.Translate(float64((g.positionX)*tileSize), float64((g.positionY)*tileSize))
@@ -118,7 +110,7 @@ func main() {
 	game := &Game{state: "down_1", positionX: 1, positionY: 1}
 	ebiten.SetTPS(10)
 	ebiten.SetWindowSize(tileSize*45*2, tileSize*28*2)
-	ebiten.SetWindowTitle("Top Down World")
+	ebiten.SetWindowTitle("Top-Down World")
 	if err := ebiten.RunGame(game); err != nil {
 		panic(err)
 	}
