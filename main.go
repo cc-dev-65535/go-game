@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"image"
 	_ "image/png"
-	"log"
 
 	"game/test/images"
 
@@ -21,34 +20,39 @@ const tileSize = 16
 const mapPath = "maps/game.tmx"
 
 var (
-	characterImage *ebiten.Image
+	characterImage   *ebiten.Image
+	characterSprites map[string]*spritesheet.Sprite
 )
 
 func init() {
 	img, _, err := image.Decode(bytes.NewReader(images.Character_png))
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	characterImage = ebiten.NewImageFromImage(img)
 
-	sheet, err := spritesheet.OpenAndRead("spritesheet.yml")
+	characterSheet, err := spritesheet.OpenAndRead("character.yaml")
+	if err != nil {
+		panic(err)
+	}
+	characterSprites = characterSheet.Sprites()
 }
 
 func (g *Game) Update() error {
 	return nil
 }
 
-func getImageFromSpritesheet(imageFile *ebiten.Image, cell int) *ebiten.Image {
-	width := imageFile.Bounds().Dx()
-	tileXCount := width / tileSize
+func getImageFromSpritesheet(imageFile *ebiten.Image, sprite string) *ebiten.Image {
+	// width := imageFile.Bounds().Dx()
+	// tileXCount := width / tileSize
 
-	sx := (cell % tileXCount) * tileSize
-	sy := (cell / tileXCount) * tileSize
+	// sx := (cell % tileXCount) * tileSize
+	// sy := (cell / tileXCount) * tileSize
 
-	sy = 16
-	fmt.Println(sx)
-	fmt.Println(sy)
-	return imageFile.SubImage(image.Rect(sx, sy, sx+tileSize, sy+tileSize)).(*ebiten.Image)
+	// sy = 16
+	// fmt.Println(sx)
+	// fmt.Println(sy)
+	return imageFile.SubImage(characterSprites[sprite].Rect()).(*ebiten.Image)
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
@@ -82,9 +86,9 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	screen.DrawImage(ebiten.NewImageFromImage(layerImage), options)
 
 	optionsCharacter := &ebiten.DrawImageOptions{}
-	optionsCharacter.GeoM.Translate(float64((0)*tileSize), float64((0)*tileSize))
+	optionsCharacter.GeoM.Translate(float64((3)*tileSize), float64((3)*tileSize))
 
-	screen.DrawImage(getImageFromSpritesheet(characterImage, 1), optionsCharacter)
+	screen.DrawImage(getImageFromSpritesheet(characterImage, "idle_1"), optionsCharacter)
 
 	// const xCount = 320 / tileSize
 	// for _, layer := range g.layers {
