@@ -32,7 +32,7 @@
             "scaleInEditor": 1
         }
     },
-    "last.imagePath": "C:/Users/omiya/Documents/Sprout Lands - Sprites - Basic pack/Tilesets",
+    "last.imagePath": "C:/Users/omiya/Documents/Sprout Lands - Sprites - Basic pack/Characters",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
         "maps/game.tmx",
@@ -44,5 +44,9 @@
         "maps/game.tmx",
         "game.tmx"
     ],
-    "tileset.lastUsedFormat": "tsx"
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
 }
