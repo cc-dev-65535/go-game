@@ -6,8 +6,8 @@
     "activeFile": "maps/game.tmx",
     "expandedProjectPaths": [
         ".",
-        "tilesets",
-        "maps"
+        "maps",
+        "tilesets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -21,25 +21,73 @@
         },
         "maps/game.tmx": {
             "scale": 1.5,
-            "selectedLayer": 0,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 262.6666666666667,
-                "y": 178.66666666666669
+                "x": 359.33333333333337,
+                "y": 181.33333333333334
             }
+        },
+        "tilesets/Basic_Grass_Biom_things.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/Character.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/Fences.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/Free Chicken Sprites.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/Free Cow Sprites.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "tilesets/Grass.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "tilesets/Paths.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/Sprout Lands defautlt palette snip.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/Tilled_Dirt_Wide_v2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
-    "last.imagePath": "C:/Users/omiya/Documents/Sprout Lands - Sprites - Basic pack/Characters",
+    "last.imagePath": "C:/Users/omiya/Documents/Sprout Lands - Sprites - Basic pack/Objects",
     "map.lastUsedFormat": "tmx",
     "openFiles": [
         "maps/game.tmx",
-        "tilesets/Grass.tsx"
+        "tilesets/Grass.tsx",
+        "tilesets/Character.tsx",
+        "tilesets/Basic_Grass_Biom_things.tsx",
+        "tilesets/Free Cow Sprites.tsx",
+        "tilesets/Free Chicken Sprites.tsx",
+        "tilesets/Fences.tsx",
+        "tilesets/Sprout Lands defautlt palette snip.tsx",
+        "tilesets/Tilled_Dirt_Wide_v2.tsx",
+        "tilesets/Paths.tsx"
     ],
     "project": "game.tiled-project",
     "recentFiles": [
+        "tilesets/Paths.tsx",
+        "tilesets/Tilled_Dirt_Wide_v2.tsx",
+        "tilesets/Sprout Lands defautlt palette snip.tsx",
+        "tilesets/Fences.tsx",
+        "tilesets/Free Chicken Sprites.tsx",
+        "tilesets/Free Cow Sprites.tsx",
+        "tilesets/Basic_Grass_Biom_things.tsx",
+        "tilesets/Character.tsx",
         "tilesets/Grass.tsx",
         "maps/game.tmx",
         "game.tmx"

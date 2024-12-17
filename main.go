@@ -73,7 +73,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		panic(err)
 	}
 
-	fmt.Println(gameMap)
+	// fmt.Println(gameMap)
 
 	renderer, err := render.NewRenderer(gameMap)
 	if err != nil {
@@ -87,11 +87,22 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		panic(err)
 	}
 
-	var layerImage image.Image = renderer.Result
+	var layerOneImage image.Image = renderer.Result
 
 	renderer.Clear()
 
-	screen.DrawImage(ebiten.NewImageFromImage(layerImage), options)
+	err = renderer.RenderLayer(1)
+	if err != nil {
+		fmt.Printf("layer unsupported for rendering: %s", err.Error())
+		panic(err)
+	}
+
+	var layerTwoImage image.Image = renderer.Result
+
+	renderer.Clear()
+
+	screen.DrawImage(ebiten.NewImageFromImage(layerOneImage), options)
+	screen.DrawImage(ebiten.NewImageFromImage(layerTwoImage), options)
 
 	optionsCharacter := &ebiten.DrawImageOptions{}
 	optionsCharacter.GeoM.Translate(float64((g.positionX)*tileSize), float64((g.positionY)*tileSize))
