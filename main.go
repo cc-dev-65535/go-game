@@ -14,7 +14,11 @@ import (
 	"github.com/lafriks/go-tiled/render"
 )
 
-type Game struct{ player []int }
+type Game struct {
+	state     string
+	positionX int
+	positionY int
+}
 
 const tileSize = 16
 const mapPath = "maps/game.tmx"
@@ -39,19 +43,23 @@ func init() {
 }
 
 func (g *Game) Update() error {
+	if ebiten.IsKeyPressed(ebiten.KeyA) || ebiten.IsKeyPressed(ebiten.KeyArrowLeft) {
+		g.state = "left_1"
+		g.positionX -= 1
+	} else if ebiten.IsKeyPressed(ebiten.KeyD) || ebiten.IsKeyPressed(ebiten.KeyArrowRight) {
+		g.state = "right_1"
+		g.positionX += 1
+	} else if ebiten.IsKeyPressed(ebiten.KeyW) || ebiten.IsKeyPressed(ebiten.KeyArrowUp) {
+		g.state = "up_1"
+		g.positionY -= 1
+	} else if ebiten.IsKeyPressed(ebiten.KeyS) || ebiten.IsKeyPressed(ebiten.KeyArrowDown) {
+		g.state = "down_1"
+		g.positionY += 1
+	}
 	return nil
 }
 
 func getImageFromSpritesheet(imageFile *ebiten.Image, sprite string) *ebiten.Image {
-	// width := imageFile.Bounds().Dx()
-	// tileXCount := width / tileSize
-
-	// sx := (cell % tileXCount) * tileSize
-	// sy := (cell / tileXCount) * tileSize
-
-	// sy = 16
-	// fmt.Println(sx)
-	// fmt.Println(sy)
 	return imageFile.SubImage(characterSprites[sprite].Rect()).(*ebiten.Image)
 }
 
@@ -86,19 +94,9 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	screen.DrawImage(ebiten.NewImageFromImage(layerImage), options)
 
 	optionsCharacter := &ebiten.DrawImageOptions{}
-	optionsCharacter.GeoM.Translate(float64((3)*tileSize), float64((3)*tileSize))
+	optionsCharacter.GeoM.Translate(float64((g.positionX)*tileSize), float64((g.positionY)*tileSize))
 
-	screen.DrawImage(getImageFromSpritesheet(characterImage, "idle_1"), optionsCharacter)
-
-	// const xCount = 320 / tileSize
-	// for _, layer := range g.layers {
-	// 	for i, cell := range layer {
-	// 		op := &ebiten.DrawImageOptions{}
-	// 		op.GeoM.Translate(float64((i%xCount)*tileSize), float64((i/xCount)*tileSize))
-
-	// 		screen.DrawImage(getImageFromSpritesheet(characterImage, cell), op)
-	// 	}
-	// }
+	screen.DrawImage(getImageFromSpritesheet(characterImage, g.state), optionsCharacter)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
@@ -106,9 +104,10 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeigh
 }
 
 func main() {
-	game := &Game{}
+	game := &Game{state: "down_1", positionX: 1, positionY: 1}
+	ebiten.SetTPS(10)
 	ebiten.SetWindowSize(tileSize*45*2, tileSize*28*2)
-	ebiten.SetWindowTitle("My Game")
+	ebiten.SetWindowTitle("Top Down World")
 	if err := ebiten.RunGame(game); err != nil {
 		panic(err)
 	}
