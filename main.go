@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"image"
 	_ "image/png"
+	"strings"
 
 	"game/test/images"
 
@@ -45,17 +46,36 @@ func init() {
 
 func (g *Game) Update() error {
 	if ebiten.IsKeyPressed(ebiten.KeyA) || ebiten.IsKeyPressed(ebiten.KeyArrowLeft) {
-		g.state = "left_1"
+		if g.state == "left_3" {
+			g.state = "left_4"
+		} else {
+			g.state = "left_3"
+		}
 		g.positionX -= 1
 	} else if ebiten.IsKeyPressed(ebiten.KeyD) || ebiten.IsKeyPressed(ebiten.KeyArrowRight) {
-		g.state = "right_1"
+		if g.state == "right_3" {
+			g.state = "right_4"
+		} else {
+			g.state = "right_3"
+		}
 		g.positionX += 1
 	} else if ebiten.IsKeyPressed(ebiten.KeyW) || ebiten.IsKeyPressed(ebiten.KeyArrowUp) {
-		g.state = "up_1"
+		if g.state == "up_3" {
+			g.state = "up_4"
+		} else {
+			g.state = "up_3"
+		}
 		g.positionY -= 1
 	} else if ebiten.IsKeyPressed(ebiten.KeyS) || ebiten.IsKeyPressed(ebiten.KeyArrowDown) {
-		g.state = "down_1"
+		if g.state == "down_3" {
+			g.state = "down_4"
+		} else {
+			g.state = "down_3"
+		}
 		g.positionY += 1
+	} else if g.state != "" {
+		result := strings.Split(g.state, "_")
+		g.state = result[0] + "_1"
 	}
 	return nil
 }
@@ -73,8 +93,6 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		fmt.Printf("error parsing map: %s", err.Error())
 		panic(err)
 	}
-
-	// fmt.Println(gameMap)
 
 	renderer, err := render.NewRenderer(gameMap)
 	if err != nil {
