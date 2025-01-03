@@ -75,7 +75,11 @@ func (g *Game) Update() error {
 		g.positionY += 1
 	} else if g.state != "" {
 		result := strings.Split(g.state, "_")
-		g.state = result[0] + "_1"
+		if g.state == result[0]+"_1" {
+			g.state = result[0] + "_2"
+		} else {
+			g.state = result[0] + "_1"
+		}
 	}
 	return nil
 }
@@ -126,7 +130,7 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeigh
 
 func main() {
 	game := &Game{state: "down_1", positionX: 1, positionY: 1}
-	ebiten.SetTPS(10)
+	ebiten.SetTPS(8)
 	ebiten.SetWindowSize(tileSize*45*2, tileSize*28*2)
 	ebiten.SetWindowTitle("Top-Down World")
 	if err := ebiten.RunGame(game); err != nil {

@@ -5,9 +5,9 @@
     },
     "activeFile": "maps/game.tmx",
     "expandedProjectPaths": [
-        ".",
         "maps",
-        "tilesets"
+        "tilesets",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -23,7 +23,7 @@
             "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 359.33333333333337,
+                "x": 361.99999999999994,
                 "y": 181.33333333333334
             }
         },
