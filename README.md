@@ -1,5 +1,5 @@
 # go-game
-Top-down tile-based game.
+Top-down 2D tile-based game developed with the ebitengine game engine.
 
 ## Tools and Libraries
 
